@@ -58,10 +58,10 @@ for (var x = 0; x < WORLD_WIDTH; x++) {
 for (var i = 0; i < terrain.length; i++) {
 	terrain[i].addToScene(scene);
 }
-/*terrain[32].setY(1);
+terrain[32].setY(1);
 terrain[33].setY(1);
 terrain[42].setY(1);
-terrain[43].setY(1);*/
+terrain[43].setY(1);
 
 function generateChunk() {
 	var chunk = [];
@@ -216,10 +216,21 @@ function checkForPlayerCollision(debug = 0) {
 		var xon = false;
 		var zon = false;
 		var yon = false;
-		var xg = x + 0.5;
-		var xl = x - 0.5;
-		var zg = z + 0.5;
-		var zl = z - 0.5;
+		var sideon = false;
+		var cubeBounds = {
+			"x": {
+				"max": cubeObj.position.x + 0.5,
+				"min": cubeObj.position.x - 0.5
+			},
+			"z": {
+				"max": cubeObj.position.z + 0.5,
+				"min": cubeObj.position.z - 0.5
+			},
+			"y": {
+				"max": cubeObj.position.y,
+				"min": cubeObj.position.y - 1
+			}
+		}
 		if (x > (cubeObj.position.x - 0.5) && x < (cubeObj.position.x + 0.5)) {
 			xon = true;
 			//console.log("xg: " + xg + ", xl: " + xl);
@@ -230,6 +241,12 @@ function checkForPlayerCollision(debug = 0) {
 		}
 		if (Math.floor(y - 1) == cubeObj.position.y) {
 			yon = true;
+		}
+		if (xon && zon && !yon) {
+			var rot = camera.rotation.y;
+			var vec = new THREE.Vector3();
+			camera.getWorldDirection(vec);
+			camera.position.addScaledVector(vec, -0.1);
 		}
 		if (xon && zon && yon) {
 			//cubeObj.material.color.setHex(0x00ff00);
