@@ -1,0 +1,26 @@
+body {
+	margin: 0%;
+	padding: 0%;
+}
+#info {
+	position: fixed;
+	top: 10px;
+	width: 80vw;
+	left: 0px;
+	right: 80vw;
+	text-align: center;
+	z-index: 100;
+	display:block;
+	color: rgb(255, 255, 255);
+}
+#settings {
+	position: fixed;
+	top: 0%;
+	width: 20vw;
+	right: 0px;
+	left: 80vw;
+	text-align: center;
+	z-index: 100;
+	display:block;
+	color: rgb(255, 255, 255);
+}
