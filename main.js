@@ -58,10 +58,10 @@ for (var x = 0; x < WORLD_WIDTH; x++) {
 for (var i = 0; i < terrain.length; i++) {
 	terrain[i].addToScene(scene);
 }
-terrain[32].setY(1);
+/*terrain[32].setY(1);
 terrain[33].setY(1);
 terrain[42].setY(1);
-terrain[43].setY(1);
+terrain[43].setY(1);*/
 
 function generateChunk() {
 	var chunk = [];
