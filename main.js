@@ -1,5 +1,6 @@
 var stats = new Stats();
 document.body.appendChild(stats.dom);
+stats.dom.style.display = "none";
 // Setup three.js
 var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -253,6 +254,9 @@ var debugLines = [];
 function toggleDebug() {
 	debug = (!debug);
 	if (debug) {
+		// Show the Stats module
+		stats.dom.style.display = "block";
+		// Create Block Debug lines
 		for (var i = 0; i < terrain.length; i++) {
 			var material = new THREE.LineBasicMaterial({
 				color: 0x00ff00
@@ -267,6 +271,9 @@ function toggleDebug() {
 			scene.add(line);
 		}
 	} else {
+		// Hide Stats module
+		stats.dom.style.display = "none";
+		// Remove Block Debug lines
 		var length = debugLines.length;
 		for (var i = 0; i < length; i++) {
 			scene.remove(debugLines[0]);
