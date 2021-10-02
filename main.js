@@ -256,6 +256,8 @@ function toggleDebug() {
 	if (debug) {
 		// Show the Stats module
 		stats.dom.style.display = "block";
+		// Add playerCenterRay
+		scene.add(playerCenterRay);
 		// Create Block Debug lines
 		for (var i = 0; i < terrain.length; i++) {
 			var material = new THREE.LineBasicMaterial({
@@ -273,6 +275,8 @@ function toggleDebug() {
 	} else {
 		// Hide Stats module
 		stats.dom.style.display = "none";
+		// Remove playerCenterRay
+		scene.remove(playerCenterRay);
 		// Remove Block Debug lines
 		var length = debugLines.length;
 		for (var i = 0; i < length; i++) {
@@ -312,7 +316,6 @@ function start() {
 	var geometry = new THREE.BufferGeometry();
 	geometry.setFromPoints(playerCenterRayPoints);
 	playerCenterRay = new THREE.Line(geometry, material);
-	scene.add(playerCenterRay);
 	animate();
 }
 start();
