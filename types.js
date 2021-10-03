@@ -117,13 +117,13 @@ class Compass {
 	update() {
 		var rot = this.cameraControler.getRotationY();
 		if (rot < 1.5 && rot >= 0) {
-			this.textBox.innerHTML = this.directions._0;
+			this.textBox.innerHTML = "North";
 		} else if (rot >= 1.5 && rot < 3) {
-			this.textBox.innerHTML = this.directions._1_5;
+			this.textBox.innerHTML = "West";
 		} else if (rot >= 3 && rot < 4.5) {
-			this.textBox.innerHTML = this.directions._3;	
+			this.textBox.innerHTML = "South";
 		} else if (rot >= 4.5 && rot < 6) {
-			this.textBox.innerHTML = this.directions._4_5;	
+			this.textBox.innerHTML = "East";
 		} else {
 			this.textBox.innerHTML = "Undefined";
 		}
