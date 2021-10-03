@@ -262,6 +262,10 @@ function toggleDebug() {
 		stats.dom.style.display = "block";
 		// Add playerCenterRay
 		scene.add(playerCenterRay);
+		// Show wireframes
+		for (var i = 0; i < terrain.length; i++) {
+			scene.add(terrain[i].wireframe);
+		}
 		// Create Block Debug lines
 		for (var i = 0; i < terrain.length; i++) {
 			var material = new THREE.LineBasicMaterial({
@@ -281,6 +285,10 @@ function toggleDebug() {
 		stats.dom.style.display = "none";
 		// Remove playerCenterRay
 		scene.remove(playerCenterRay);
+		// Hide wireframes
+		for (var i = 0; i < terrain.length; i++) {
+			scene.remove(terrain[i].wireframe);
+		}
 		// Remove Block Debug lines
 		var length = debugLines.length;
 		for (var i = 0; i < length; i++) {
@@ -289,8 +297,6 @@ function toggleDebug() {
 		}
 	}
 	debugChanged = true;
-	console.log(debugLines.length);
-	console.log(debug);
 }
 
 function animate() {

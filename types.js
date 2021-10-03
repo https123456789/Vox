@@ -68,7 +68,6 @@ class TCube {
 	}
 	addToScene(scene) {
 		scene.add(this.cube);
-		scene.add(this.wireframe);
 	}
 	updateSelf() {
 		if (this.type == "unknown") {
