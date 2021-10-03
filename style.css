@@ -4,28 +4,27 @@ body {
 }
 #info {
 	position: fixed;
-	top: 10px;
-	width: 80vw;
+	top: 0px;
 	left: 0px;
-	right: 80vw;
 	text-align: center;
 	z-index: 100;
-	display:block;
+	display: block;
 	color: rgb(255, 255, 255);
+	background-color: rgba(0, 0, 0, 1);
 }
 #settings {
 	position: fixed;
 	top: 0%;
 	width: 20vw;
 	right: 0px;
-	left: 80vw;
 	text-align: center;
 	z-index: 100;
 	display:block;
 	color: rgb(255, 255, 255);
+	background-color: rgba(0, 0, 0, 1);
 }
 #settings > button {
-	background-color: rgba(0, 0, 0, 0);
+	background-color: rgba(0, 0, 0, 1);
 	color: rgb(255, 255, 255);
 	border: 1px solid rgba(0, 0, 0, 0);
 	cursor: pointer;
@@ -35,6 +34,6 @@ body {
 	bottom: 0%;
 	left: 0%;
 	color: rgb(255, 255, 255);
-	background-color: rgba(0, 0, 0, 0);
+	background-color: rgba(0, 0, 0, 1);
 	padding: 1%;
 }

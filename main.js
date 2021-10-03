@@ -3,6 +3,7 @@ document.body.appendChild(stats.dom);
 stats.dom.style.display = "none";
 // Setup three.js
 var scene = new THREE.Scene();
+scene.background = new THREE.Color(0x00ffff);
 var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 const renderer = new THREE.WebGLRenderer({
 	antialias: true
@@ -177,9 +178,6 @@ function handleInput() {
 		if (!c) {
 			if (camera.position.y > 1) {
 				cameraControler.setY(GRAVITY, add = 1);
-			}
-			if (camera.position.y < 1) {
-				cameraControler.setY(1);
 			}
 		}
 	}
