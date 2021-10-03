@@ -150,9 +150,7 @@ function handleInput() {
 	if (keys.w) {
 		var vec = new THREE.Vector3();
 		camera.getWorldDirection(vec);
-		//console.log(vec);
 		camera.position.addScaledVector(vec, 0.1);
-		//console.log(camera.position);
 	}
 	if (keys.s) {
 		var vec = new THREE.Vector3();
@@ -162,12 +160,10 @@ function handleInput() {
 	if (keys.a) {
 		var vec = new THREE.Vector3();
 		camera.getWorldDirection(vec);
-		//console.log(vec);
 	}
 	if (keys.d) {
 		var vec = new THREE.Vector3();
 		camera.getWorldDirection(vec);
-		//console.log(vec);
 	}
 	if (keys.Space) {
 		var c = checkForPlayerCollision();
@@ -186,21 +182,6 @@ function handleInput() {
 				cameraControler.setY(1);
 			}
 		}
-	}
-}
-
-function keepEntitiesInBounds() {
-	if (camera.position.x < 0) {
-		camera.position.x = 0;
-	}
-	if (camera.position.x > WORLD_WIDTH) {
-		camera.position.x = WORLD_WIDTH;
-	}
-	if (camera.position.z < 0) {
-		camera.position.z = 0;
-	}
-	if (camera.position.z > WORLD_LENGTH) {
-		camera.position.z = WORLD_LENGTH;
 	}
 }
 
@@ -233,11 +214,9 @@ function checkForPlayerCollision(debug = 0) {
 		}
 		if (x > (cubeObj.position.x - 0.5) && x < (cubeObj.position.x + 0.5)) {
 			xon = true;
-			//console.log("xg: " + xg + ", xl: " + xl);
 		}
 		if (z > (cubeObj.position.z - 0.5) && z < (cubeObj.position.z + 0.5)) {
 			zon = true;
-			//console.log("zg: " + zg + ", zl: " + zl);
 		}
 		if (Math.floor(y - 1) == cubeObj.position.y) {
 			yon = true;
@@ -245,7 +224,6 @@ function checkForPlayerCollision(debug = 0) {
 		if (xon && zon && !yon) {
 			var rot = camera.rotation.y;
 			if (rot >= 3) {
-				//console.log("Player is backwards.");
 				var vec = new THREE.Vector3();
 				camera.getWorldDirection(vec);
 				camera.position.addScaledVector(vec, 0.1);
@@ -257,9 +235,6 @@ function checkForPlayerCollision(debug = 0) {
 		}
 		if (xon && zon && yon) {
 			//cubeObj.material.color.setHex(0x00ff00);
-			//console.log(y);
-			//cameraControler.setY(Math.floor(y));
-			//console.log("On cube at x: " + cubeObj.position.x + ", y: " + cubeObj.position.y + ", z: " + cubeObj.position.z);
 			terrain[i].cube = cubeObj;
 			return(true);
 		}
@@ -268,7 +243,6 @@ function checkForPlayerCollision(debug = 0) {
 
 function update() {
 	scene.add(light.target);
-	//keepEntitiesInBounds();
 	handleInput();
 	checkForPlayerCollision();
 }
