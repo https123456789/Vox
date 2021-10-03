@@ -244,9 +244,16 @@ function checkForPlayerCollision(debug = 0) {
 		}
 		if (xon && zon && !yon) {
 			var rot = camera.rotation.y;
-			var vec = new THREE.Vector3();
-			camera.getWorldDirection(vec);
-			camera.position.addScaledVector(vec, -0.1);
+			if (rot >= 3) {
+				//console.log("Player is backwards.");
+				var vec = new THREE.Vector3();
+				camera.getWorldDirection(vec);
+				camera.position.addScaledVector(vec, 0.1);
+			} else {
+				var vec = new THREE.Vector3();
+				camera.getWorldDirection(vec);
+				camera.position.addScaledVector(vec, -0.1);
+			}
 		}
 		if (xon && zon && yon) {
 			//cubeObj.material.color.setHex(0x00ff00);
