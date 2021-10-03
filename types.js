@@ -102,3 +102,30 @@ class TCube {
 		}
 	}
 }
+
+class Compass {
+	constructor(cameraControler, textBox) {
+		this.directions = {
+			"_0": "North",
+			"_1_5": "West",
+			"_3": "South",
+			"_4_5": "East"
+		};
+		this.cameraControler = cameraControler;
+		this.textBox = textBox;
+	}
+	update() {
+		var rot = this.cameraControler.getRotationY();
+		if (rot < 1.5 && rot >= 0) {
+			this.textBox.innerHTML = this.directions._0;
+		} else if (rot >= 1.5 && rot < 3) {
+			this.textBox.innerHTML = this.directions._1_5;
+		} else if (rot >= 3 && rot < 4.5) {
+			this.textBox.innerHTML = this.directions._3;	
+		} else if (rot >= 4.5 && rot < 6) {
+			this.textBox.innerHTML = this.directions._4_5;	
+		} else {
+			this.textBox.innerHTML = "Undefined";
+		}
+	}
+}
