@@ -13,8 +13,6 @@ class CameraControler {
 				this.camera.rotation.y += amount;
 			}
 		}
-		/*this.camera.rotation.y += amount;
-		console.log(this.camera.rotation.y);*/
 	}
 	rotateX(amount) {
 		this.camera.rotation.x += amount;
@@ -63,13 +61,19 @@ class CameraControler {
 }
 
 class TCube {
-	constructor(cubeObj, wireframeObj) {
+	constructor(cubeObj, wireframeObj, type = "unknown") {
 		this.cube = cubeObj;
 		this.wireframe = wireframeObj;
+		this.type = type;
 	}
 	addToScene(scene) {
 		scene.add(this.cube);
 		scene.add(this.wireframe);
+	}
+	updateSelf() {
+		if (this.type == "unknown") {
+			this.cube.material.color.setHex(0x00ff00);
+		}
 	}
 	setY(pos, add = 0) {
 		if (add == 0) {

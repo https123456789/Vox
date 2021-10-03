@@ -234,15 +234,21 @@ function checkForPlayerCollision(debug = 0) {
 			}
 		}
 		if (xon && zon && yon) {
-			//cubeObj.material.color.setHex(0x00ff00);
 			terrain[i].cube = cubeObj;
 			return(true);
 		}
 	}
 }
 
+function updateTerrain() {
+	for (var i = 0; i < terrain.length; i++) {
+		terrain[i].updateSelf();
+	}
+}
+
 function update() {
 	scene.add(light.target);
+	updateTerrain();
 	handleInput();
 	checkForPlayerCollision();
 }
