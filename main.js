@@ -221,7 +221,7 @@ function checkForPlayerCollision(debug = 0) {
 		if (Math.floor(y - 1) == cubeObj.position.y) {
 			yon = true;
 		}
-		if (xon && zon && !yon) {
+		if (xon && zon && !yon && !jumping) {
 			var rot = camera.rotation.y;
 			if (rot >= 3) {
 				var vec = new THREE.Vector3();
