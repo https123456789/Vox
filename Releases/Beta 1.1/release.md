@@ -13,6 +13,10 @@
 - Multi-Sided collision physics.
 - Debug Mode.
 
+## Download
+
+[Vox Beta 1.1.zip](<Vox Beta 1.1.zip>)
+
 ## Notes
 
 - This is a pre-release.
