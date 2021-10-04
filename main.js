@@ -68,9 +68,18 @@ terrain[42].setY(1);
 terrain[43].setY(1);
 var g = new THREE.BoxGeometry(1, 1, 1);
 var mats = [
+	/* South */
 	new THREE.MeshBasicMaterial({color: 0xff0000}),
+	/* North */
 	new THREE.MeshBasicMaterial({color: 0xffff00}),
-	new THREE.MeshBasicMaterial({color: 0x00ff00})
+	/* Top */
+	new THREE.MeshBasicMaterial({color: 0x00ff00}),
+	/* Bottom */
+	new THREE.MeshBasicMaterial({color: 0xffffff}),
+	/* East */
+	new THREE.MeshBasicMaterial({color: 0x0000ff}),
+	/* West */
+	new THREE.MeshBasicMaterial({color: 0x000000})
 ];
 var mesh = new THREE.Mesh(g, mats);
 mesh.position.x = 15;
