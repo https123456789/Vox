@@ -84,7 +84,7 @@ var mats = [
 var mesh = new THREE.Mesh(g, mats);
 mesh.position.x = 15;
 mesh.position.z = 15;
-scene.add(mesh);
+//scene.add(mesh);
 
 function generateChunk() {
 	var chunk = [];
