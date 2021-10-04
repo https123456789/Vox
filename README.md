@@ -2,7 +2,7 @@
 
 Vox is a voxel based game.
 
-![Beta 1.0](<Releases/Beta 1.0/Beta 1.0.png>)
+![Beta 1.0](<Releases/Beta 1.1/Beta 1.1.png>)
 *Beta 1.0 Screenshot*
 
 ## Controls
