@@ -70,8 +70,14 @@ class TCube {
 		scene.add(this.cube);
 	}
 	updateSelf() {
-		if (this.type == "unknown") {
-			this.cube.material.color.setHex(0x00ff00);
+		switch (this.type) {
+			case "dirt":
+				this.cube.material.color.setHex(0x964B00);
+				break;
+			case "air":
+			default:
+				this.cube.material.color.setHex(0x888888);
+				break;
 		}
 	}
 	setY(pos, add = 0) {

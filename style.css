@@ -18,7 +18,7 @@ body {
 	width: 20vw;
 	right: 0px;
 	text-align: center;
-	z-index: 100;
+	z-index: 102;
 	display:block;
 	color: rgb(0, 0, 0);
 	background-color: rgba(255, 255, 255, 1);
@@ -39,4 +39,44 @@ body {
 #compass {
 	font-family: monospace;
 	width: 10vw;
+}
+#stats {
+	position: fixed;
+	top: 0%;
+	left: 0%;
+	right: 20vw;
+	bottom: 0%;
+	color: rgb(0, 0, 0);
+	z-index: 101;
+	background-color: rgba(255, 255, 255, 0);
+	display: none;
+}
+#stats_fps {
+	position: fixed;
+	top: 5vh;
+	left: 0vw;
+	background-color: rgba(255, 255, 255, 1);
+	color: rgb(0, 0, 0);
+	font-family: monospace;
+	width: 20vw;
+	padding-top: 1vh;
+	padding-bottom: 1vh;
+	padding-left: 1vw;
+	padding-right: 1vw;
+	z-index: 101;
+	display: none;
+}
+#stats_compass {
+	position: fixed;
+	top: 0vh;
+	left: 0vw;
+	background-color: rgba(255, 255, 255, 1);
+	color: rgb(0, 0, 0);
+	font-family: monospace;
+	width: 20vw;
+	padding-top: 1vh;
+	padding-bottom: 1vh;
+	padding-left: 1vw;
+	padding-right: 1vw;
+	z-index: 101;
 }

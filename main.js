@@ -1,6 +1,7 @@
-var stats = new Stats();
+var stats = new GameStats();
+/*var stats = new Stats();
 document.body.appendChild(stats.dom);
-stats.dom.style.display = "none";
+stats.dom.style.display = "none";*/
 // Setup three.js
 var scene = new THREE.Scene();
 scene.background = new THREE.Color(0x00ffff);
@@ -21,6 +22,7 @@ scene.add(globalLight);
 var playerCenterRay;
 // Global variables
 var debug = false;
+var debugLines = [];
 var jumping = false;
 var GRAVITY = -1;
 var WORLD_WIDTH = 10;
@@ -41,18 +43,19 @@ var keyUpListener = window.addEventListener("keyup", handleKeyUp);
 for (var x = 0; x < WORLD_WIDTH; x++) {
 	for (var z = 0; z < WORLD_LENGTH; z++) {
 		var geometry = new THREE.BoxGeometry();
+		var materials = [
+			new THREE.MeshLambertMaterial({color: 0xf0f0f0})
+		];
+		//geometry.groups[0].materialIndex = 1;
 		var wireframe = new THREE.WireframeGeometry(geometry);
 		var lines = new THREE.LineSegments(wireframe);
 		var material;
-		material = new THREE.MeshLambertMaterial({
-			color: "rgb(" + x*10 + ", " + z*10 + ", " + z*10 + ")"
-		});
-		var cube = new THREE.Mesh(geometry, material);
+		var cube = new THREE.Mesh(geometry, materials[0]);
 		cube.position.x = x;
 		cube.position.z = z;
 		lines.position.x = x;
 		lines.position.z = z;
-		var tcube = new TCube(cube, lines);
+		var tcube = new TCube(cube, lines, type = "unknown");
 		terrain.push(tcube);
 	}
 }
@@ -63,6 +66,16 @@ terrain[32].setY(1);
 terrain[33].setY(1);
 terrain[42].setY(1);
 terrain[43].setY(1);
+var g = new THREE.BoxGeometry(1, 1, 1);
+var mats = [
+	new THREE.MeshBasicMaterial({color: 0xff0000}),
+	new THREE.MeshBasicMaterial({color: 0xffff00}),
+	new THREE.MeshBasicMaterial({color: 0x00ff00})
+];
+var mesh = new THREE.Mesh(g, mats);
+mesh.position.x = 15;
+mesh.position.z = 15;
+scene.add(mesh);
 
 function generateChunk() {
 	var chunk = [];
@@ -251,13 +264,11 @@ function update() {
 	checkForPlayerCollision();
 }
 
-var debugLines = [];
-
 function toggleDebug() {
 	debug = (!debug);
 	if (debug) {
 		// Show the Stats module
-		stats.dom.style.display = "block";
+		stats.show();
 		// Add playerCenterRay
 		scene.add(playerCenterRay);
 		// Show wireframes
@@ -279,8 +290,8 @@ function toggleDebug() {
 			scene.add(line);
 		}
 	} else {
-		// Hide Stats module
-		stats.dom.style.display = "none";
+		// Hide stats
+		stats.hide();
 		// Remove playerCenterRay
 		scene.remove(playerCenterRay);
 		// Hide wireframes
@@ -302,7 +313,7 @@ function animate() {
 	renderer.setSize(window.innerWidth, window.innerHeight);
 	update();
 	renderer.render(scene, camera);
-	stats.update();
+	stats.fpsStats.update();
 }
 
 function start() {
