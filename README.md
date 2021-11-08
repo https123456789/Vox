@@ -2,8 +2,8 @@
 
 Vox is a voxel based game.
 
-![Beta 1.0](<Releases/Beta 1.1/Beta 1.1.png>)
-*Beta 1.0 Screenshot*
+![Beta 1.1](<Releases/Beta 1.1/Beta 1.1.png>)
+*Beta 1.1 Screenshot*
 
 ## Controls
 
@@ -13,3 +13,6 @@ Vox is a voxel based game.
 | Move backward. | s |
 | Rotate left. | Arrow Left |
 | Rotate right. | Arrow right |
+
+## Download
+

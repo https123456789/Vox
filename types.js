@@ -61,22 +61,41 @@ class CameraControler {
 }
 
 class TCube {
-	constructor(cubeObj, wireframeObj, type = "unknown") {
-		this.cube = cubeObj;
-		this.wireframe = wireframeObj;
+	constructor(scene, type = "unknown") {
+		this.scene = scene;
+		this.cube;
+		this.wireframe;
 		this.type = type;
 	}
-	addToScene(scene) {
-		scene.add(this.cube);
+	create() {
+		var geometry = new THREE.BoxGeometry(1, 1, 1);
+		var wireframe = new THREE.WireframeGeometry(geometry);
+		var material = new THREE.MeshBasicMaterial({
+			color: 0x00ff00
+		});
+		this.cube = new THREE.Mesh(geometry, material);
+		this.wireframe = new THREE.LineSegments(wireframe);
+	}
+	add() {
+		this.scene.add(this.cube);
+		this.scene.add(this.wireframe);
 	}
 	updateSelf() {
 		switch (this.type) {
 			case "dirt":
-				this.cube.material.color.setHex(0x964B00);
+				this.cube.material[0].color.setHex(0x964B00);
+				break;
+			case "grass":
+				this.cube.material[0].color.setHex(0x964B00);
+				this.cube.material[1].color.setHex(0x964B00);
+				this.cube.material[2].color.setHex(0x00ff00);
+				this.cube.material[3].color.setHex(0x964B00);
+				this.cube.material[4].color.setHex(0x964B00);
+				this.cube.material[5].color.setHex(0x964B00);
 				break;
 			case "air":
 			default:
-				this.cube.material.color.setHex(0x888888);
+				this.cube.material[0].color.setHex(0x888888);
 				break;
 		}
 	}
@@ -135,3 +154,16 @@ class Compass {
 		}
 	}
 }
+/*
+class Collider {
+	constructor(entity) {
+		this.xzcollider = Rect();
+	}
+}
+
+class Rect{
+	constructor(x, y, w, h){
+
+	}
+}
+*/
