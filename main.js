@@ -25,8 +25,8 @@ var debug = false;
 var debugLines = [];
 var jumping = false;
 var GRAVITY = -1;
-var WORLD_WIDTH = 10;
-var WORLD_LENGTH = 10;
+var WORLD_WIDTH = 20;
+var WORLD_LENGTH = 20;
 var terrain = [];
 var keys = {
 	"ArrowLeft": false,
@@ -290,13 +290,15 @@ function toggleDebug() {
 				color: 0x00ff00
 			});
 			var points = [];
-			points.push(new THREE.Vector3(terrain[i].cube.position.x, -10, terrain[i].cube.position.z));
-			points.push(new THREE.Vector3(terrain[i].cube.position.x, 10, terrain[i].cube.position.z));
-			var geometry = new THREE.BufferGeometry();
-			geometry.setFromPoints(points);
-			var line = new THREE.Line(geometry, material);
-			debugLines.push(line);
-			scene.add(line);
+			if (terrain[i].cube.position.x % 10 == 0 && terrain[i].cube.position.z % 10 == 0) {
+				points.push(new THREE.Vector3(terrain[i].cube.position.x, -10, terrain[i].cube.position.z));
+				points.push(new THREE.Vector3(terrain[i].cube.position.x, 10, terrain[i].cube.position.z));
+				var geometry = new THREE.BufferGeometry();
+				geometry.setFromPoints(points);
+				var line = new THREE.Line(geometry, material);
+				debugLines.push(line);
+				scene.add(line);
+			}
 		}
 	} else {
 		// Hide stats
@@ -337,7 +339,8 @@ function start() {
 	var g = Math.floor(Math.random() * 100);
 	var b = Math.floor(Math.random() * 100);
 	var material = new THREE.LineBasicMaterial({
-		color: 0xffffff
+		color: 0xffffff,
+		linewidth: 10
 	});
 	playerCenterRayPoints.push(new THREE.Vector3(camera.position.x, 20, camera.position.z));
 	playerCenterRayPoints.push(new THREE.Vector3(camera.position.x, -20, camera.position.z));
