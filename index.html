@@ -10,13 +10,16 @@
 			<button onclick="toggleDebug()">Toggle Dev Info</button>
 		</div>
 		<div id="ui"></div>
-		<div id="stats_fps">0</div>
-		<div id="stats_compass">North</div>
+		<div class="bar-left">
+			<div id="stats_fps"></div>
+			<div id="stats_compass"></div>
+		</div>
 		<script src="lib/three.js"></script>
 		<script src="stats.js"></script>
 		<script src="types.js"></script>
-		<script src="d.js"></script>
+		<script src="fpsStats.js"></script>
 		<script src="player.js"></script>
+		<script src="debug.js"></script>
 		<script src="main.js"></script>
 		<script src="ui.js"></script>
 	</body>

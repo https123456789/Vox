@@ -21,7 +21,7 @@ var globalLight = new THREE.AmbientLight();
 scene.add(globalLight);
 var playerCenterRay;
 // Global variables
-var debug = false;
+var debug = localStorage.getItem("debug") ?? false;
 var debugLines = [];
 var jumping = false;
 var GRAVITY = -1;
@@ -267,56 +267,12 @@ function updateTerrain() {
 }
 
 function update() {
+	// Save Status to localstorage
+	localStorage.setItem("debug", debug);
 	scene.add(light.target);
 	updateTerrain();
 	handleInput();
 	checkForPlayerCollision();
-}
-
-function toggleDebug() {
-	debug = (!debug);
-	if (debug) {
-		// Show the Stats module
-		stats.show();
-		// Add playerCenterRay
-		scene.add(playerCenterRay);
-		// Show wireframes
-		for (var i = 0; i < terrain.length; i++) {
-			scene.add(terrain[i].wireframe);
-		}
-		// Create Block Debug lines
-		for (var i = 0; i < terrain.length; i++) {
-			var material = new THREE.LineBasicMaterial({
-				color: 0x00ff00
-			});
-			var points = [];
-			if (terrain[i].cube.position.x % 10 == 0 && terrain[i].cube.position.z % 10 == 0) {
-				points.push(new THREE.Vector3(terrain[i].cube.position.x, -10, terrain[i].cube.position.z));
-				points.push(new THREE.Vector3(terrain[i].cube.position.x, 10, terrain[i].cube.position.z));
-				var geometry = new THREE.BufferGeometry();
-				geometry.setFromPoints(points);
-				var line = new THREE.Line(geometry, material);
-				debugLines.push(line);
-				scene.add(line);
-			}
-		}
-	} else {
-		// Hide stats
-		stats.hide();
-		// Remove playerCenterRay
-		scene.remove(playerCenterRay);
-		// Hide wireframes
-		for (var i = 0; i < terrain.length; i++) {
-			scene.remove(terrain[i].wireframe);
-		}
-		// Remove Block Debug lines
-		var length = debugLines.length;
-		for (var i = 0; i < length; i++) {
-			scene.remove(debugLines[0]);
-			debugLines.shift();
-		}
-	}
-	debugChanged = true;
 }
 
 function animate() {
@@ -328,16 +284,14 @@ function animate() {
 }
 
 function start() {
+	// Spawning
 	var startx = Math.floor(Math.random() * 10);
 	var startz = Math.floor(Math.random() * 10);
 	camera.position.x = startx;
 	camera.position.z = startz;
 	camera.position.y = 3;
+	// Player Center Ray
 	var playerCenterRayPoints = [];
-	var randColor = Math.floor(Math.random() * 10)/10;
-	var r = Math.floor(Math.random() * 100);
-	var g = Math.floor(Math.random() * 100);
-	var b = Math.floor(Math.random() * 100);
 	var material = new THREE.LineBasicMaterial({
 		color: 0xffffff,
 		linewidth: 10
@@ -347,6 +301,12 @@ function start() {
 	var geometry = new THREE.BufferGeometry();
 	geometry.setFromPoints(playerCenterRayPoints);
 	playerCenterRay = new THREE.Line(geometry, material);
+	// Debug
+	if (debug) {
+		showDebug();
+	} else {
+		hideDebug();
+	}
 	animate();
 }
 start();

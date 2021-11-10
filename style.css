@@ -1,6 +1,7 @@
 body {
 	margin: 0%;
 	padding: 0%;
+	overflow: hidden;
 }
 #info {
 	position: fixed;
@@ -36,10 +37,6 @@ body {
 	background-color: rgba(255, 255, 255, 1);
 	padding: 1%;
 }
-#compass {
-	font-family: monospace;
-	width: 10vw;
-}
 #stats {
 	position: fixed;
 	top: 0%;
@@ -51,32 +48,17 @@ body {
 	background-color: rgba(255, 255, 255, 0);
 	display: none;
 }
-#stats_fps {
+.bar-left {
 	position: fixed;
-	top: 5vh;
 	left: 0vw;
-	background-color: rgba(255, 255, 255, 1);
-	color: rgb(0, 0, 0);
-	font-family: monospace;
-	width: 20vw;
-	padding-top: 1vh;
-	padding-bottom: 1vh;
-	padding-left: 1vw;
-	padding-right: 1vw;
-	z-index: 101;
-	display: none;
-}
-#stats_compass {
-	position: fixed;
 	top: 0vh;
-	left: 0vw;
 	background-color: rgba(255, 255, 255, 1);
-	color: rgb(0, 0, 0);
+	color: rgba(0, 0, 0, 1);
 	font-family: monospace;
-	width: 20vw;
-	padding-top: 1vh;
-	padding-bottom: 1vh;
-	padding-left: 1vw;
-	padding-right: 1vw;
 	z-index: 101;
+}
+.bar-left > * {
+	padding: 1vh 1vw;
+	display: inherit;
+	z-index: inherit;
 }

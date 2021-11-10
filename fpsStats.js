@@ -11,7 +11,7 @@ class FPSStats {
 	read() {
 		this.fps = this.frameCount;
 		this.frameCount = 0;
-		this.text = "FPS:" + this.fps;
+		this.text = "FPS: " + this.fps;
 		return(this.text);
 	}
 	update() {
@@ -19,6 +19,13 @@ class FPSStats {
 		var timePassed = this.now - this.beginTime;
 		this.frameCount += 1;
 		this.beginTime = Date.now();
+		if (this.fps < 50) {
+			this.dom.style.backgroundColor = "rgb(200, 20, 20)";
+		} else if (this.fps >= 50) {
+			this.dom.style.backgroundColor = "rgb(20, 200, 20)";
+		} else {
+			this.dom.style.backgroundColor = "rgb(0, 0, 0)";
+		}
 	}
 	show() {
 		this.dom.style.display = "block";
