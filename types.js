@@ -61,11 +61,15 @@ class CameraControler {
 }
 
 class TCube {
-	constructor(scene, type = "unknown") {
+	constructor(scene, world, posVec, type = "unknown") {
 		this.scene = scene;
+		this.world = world;
 		this.cube;
 		this.wireframe;
 		this.type = type;
+		this.position = posVec;
+		this.body;
+		this.shape;
 	}
 	create() {
 		var geometry = new THREE.BoxGeometry(1, 1, 1);
@@ -75,10 +79,17 @@ class TCube {
 		});
 		this.cube = new THREE.Mesh(geometry, material);
 		this.wireframe = new THREE.LineSegments(wireframe);
+		this.shape = new CANNON.Box(new CANNON.Vec3(this.position));
+		this.body = new CANNON.Body({
+			mass: 1,
+			shape: this.shape
+		});
 	}
 	add() {
+		this.updateSelf();
 		this.scene.add(this.cube);
 		this.scene.add(this.wireframe);
+		this.world.addBody(this.body);
 	}
 	updateSelf() {
 		switch (this.type) {
