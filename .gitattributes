@@ -1,2 +1,2 @@
-homebrew/* linguist-vendored
-lib/* linguist-vendored
+./homebrew/* linguist-vendored
+./lib/* linguist-vendored
